@@ -3,10 +3,11 @@ package config
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	/* "github.com/gofiber/swagger" */
-)
+	/* "github.com/gofiber/swagger" */)
 
 func Run() *fiber.App {
+
+	Inits()
 
 	app := fiber.New()
 
