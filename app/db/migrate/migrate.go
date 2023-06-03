@@ -1,9 +1,9 @@
 package migrate
 
 import (
-	"github.com/Daizaikun/wompi-back/app/modules/driver"
-	"github.com/Daizaikun/wompi-back/app/modules/ride"
-	"github.com/Daizaikun/wompi-back/app/modules/rider"
+	"github.com/Daizaikun/drive-back/app/modules/driver"
+	"github.com/Daizaikun/drive-back/app/modules/ride"
+	"github.com/Daizaikun/drive-back/app/modules/rider"
 	"gorm.io/gorm"
 )
 

@@ -1,10 +1,9 @@
 package main
 
 import (
-	"github.com/Daizaikun/wompi-back/app/config"
+	"github.com/Daizaikun/drive-back/app/config"
 	"github.com/joho/godotenv"
 )
-
 
 func init() {
 	godotenv.Load()

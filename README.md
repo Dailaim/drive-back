@@ -1,4 +1,4 @@
-# wompi-back
+# drive-back
 
 Para etiquetar la imagen que se construye con un Dockerfile, no se especifica el nombre de la imagen en el Dockerfile mismo. En su lugar, se proporciona como un argumento al comando `docker build` que se utiliza para construir la imagen. Aquí tienes un ejemplo de cómo podrías hacerlo:
 

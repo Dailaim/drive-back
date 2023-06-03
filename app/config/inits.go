@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/Daizaikun/wompi-back/app/db"
-	"github.com/Daizaikun/wompi-back/app/lib"
+	"github.com/Daizaikun/drive-back/app/db"
+	"github.com/Daizaikun/drive-back/app/lib"
 )
 
 func init() {
@@ -11,5 +11,4 @@ func init() {
 
 func Inits() {
 	(&lib.WompiKey{}).SetWompiKey()
-
 }

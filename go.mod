@@ -1,4 +1,4 @@
-module github.com/Daizaikun/wompi-back
+module github.com/Daizaikun/drive-back
 
 go 1.20
 

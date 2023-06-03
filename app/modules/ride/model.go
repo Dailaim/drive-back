@@ -15,5 +15,12 @@ type Model struct {
 	StartTime     time.Time
 	EndTime       time.Time
 	Status        string
-	Fare          float64
+	Fare          uint64
 }
+
+// "<Referencia><Monto><Moneda><SecretoIntegridad>"
+//  "1-2490000-cop-publicKey"
+
+// fmt.Sprintf("%d%d%s%s", ride.ID, ride.Fare, "cop", wompiKey.Integrity)
+// encriptar con sha256
+// data := 

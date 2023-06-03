@@ -1,7 +1,7 @@
 package rider
 
 import (
-	"github.com/Daizaikun/wompi-back/app/modules/ride"
+	"github.com/Daizaikun/drive-back/app/modules/ride"
 	"gorm.io/gorm"
 )
 

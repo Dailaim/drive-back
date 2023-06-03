@@ -1,8 +1,8 @@
 package db
 
 import (
-	"github.com/Daizaikun/wompi-back/app/db/dns"
-	"github.com/Daizaikun/wompi-back/app/db/migrate"
+	"github.com/Daizaikun/drive-back/app/db/dns"
+	"github.com/Daizaikun/drive-back/app/db/migrate"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	/* 	"gorm.io/gorm/logger" */)
