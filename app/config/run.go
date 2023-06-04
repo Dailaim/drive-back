@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/Daizaikun/drive-back/app/modules/wompiEvent"
+	"github.com/Daizaikun/drive-back/app/config/routers"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	/* "github.com/gofiber/swagger" */)
@@ -27,7 +27,7 @@ func Run() *fiber.App {
 
 	// Crear routs de la aplicación
 
-	app.Mount("/", wompiEvent.Controller())
+	routers.List(app)
 
 	return app
 

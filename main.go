@@ -10,5 +10,7 @@ func init() {
 }
 
 func main() {
-	config.Run().Listen(":8080")
+	app := config.Run()
+
+	app.Listen(":8080")
 }
