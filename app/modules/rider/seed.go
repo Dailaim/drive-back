@@ -11,9 +11,4 @@ var Seed = []Model{
 		LastName: "Rider2",
 		FirstName: "Rider2",
 	},
-	{
-		Email:     "rider3@example.com",
-		LastName:  "Rider3",
-		FirstName: "Rider3",
-	},
 }

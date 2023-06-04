@@ -79,12 +79,10 @@ func generateSeed() []*Model {
 		{
 			Token:   seed1.ID,
 			Name:    seed1.Name,
-			RiderID: 1,
 		},
 		{
 			Token:   seed2.ID,
 			Name:    seed2.Name,
-			RiderID: 2,
 		},
 	}
 	return Seed
