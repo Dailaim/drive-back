@@ -16,8 +16,4 @@ func (w *WompiKey) SetWompiKey() {
 		panic("WOMPI_PRIVATE_KEY or WOMPI_PUBLIC_KEY not found")
 	}
 
-	if w.Integrity == "" {
-		panic("WOMPI_INTEGRITY_KEY not found")
-	}
-
 }
