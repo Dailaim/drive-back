@@ -3,6 +3,7 @@ package ride
 import (
 	"time"
 
+	"github.com/Daizaikun/drive-back/app/modules/transaction"
 	"gorm.io/gorm"
 )
 
@@ -15,7 +16,8 @@ type Model struct {
 	StartTime     time.Time
 	EndTime       time.Time
 	Status        string
-	Fare          uint64
+	TransactionID string
+	Transaction   transaction.Model `gorm:"references:CompanyID"`
 }
 
 // "<Referencia><Monto><Moneda><SecretoIntegridad>"

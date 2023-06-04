@@ -7,9 +7,9 @@ import (
 
 type Model struct {
 	gorm.Model
-	Name            string
+	LastName         string
+	FirstName        string
 	Email           string `gorm:"type:varchar(100);unique_index"`
-	Password        string
 	CurrentLocation string       `gorm:"type:varchar(100)"`
 	Rides           []ride.Model `gorm:"foreignKey:DriverID"`
 }
