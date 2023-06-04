@@ -5,10 +5,10 @@ import (
 	"github.com/Daizaikun/drive-back/app/lib"
 )
 
-func init() {
-	db.Connect()
-}
-
 func Inits() {
+
+	db.Connect()
+
 	(&lib.WompiKey{}).SetWompiKey()
+	
 }
