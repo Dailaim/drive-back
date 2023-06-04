@@ -9,5 +9,4 @@ func List(app *fiber.App) {
 
 	app.Mount("/", wompiEvent.Controller())
 	
-
 }
