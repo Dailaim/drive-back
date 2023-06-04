@@ -9,3 +9,7 @@ type Model struct {
 	StatusMessage      string
 	Fare               uint
 }
+
+func (Model) TableName() string {
+	return "transactions"
+}

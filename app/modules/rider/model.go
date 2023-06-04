@@ -11,7 +11,12 @@ type Model struct {
 	Email     string `gorm:"type:varchar(100);unique_index"`
 	LastName  string
 	FirstName string
-	CardID    []uint
-	Card      []card.Model `gorm:"references:CardID"`
+	Card      []card.Model `gorm:"foreignKey:RiderID"`
 	Rides     []ride.Model `gorm:"foreignKey:RiderID"`
 }
+
+func (Model) TableName() string {
+	return "riders"
+}
+
+
