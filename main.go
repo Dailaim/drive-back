@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/Daizaikun/drive-back/app/config"
+	"github.com/Daizaikun/drive-back/app/lib"
 	"github.com/joho/godotenv"
 )
 
@@ -19,5 +22,7 @@ func init() {
 func main() {
 	app := config.Run()
 
-	app.Listen(":8080")
+	port := lib.CheckEnv("PORT", "8080")
+
+	app.Listen(fmt.Sprintf(":%s", port))
 }
