@@ -18,6 +18,6 @@ func Run(DB *gorm.DB) {
 	cardSeed.Seed[0].RiderID = riderSeed.Seed[0].ID
 	cardSeed.Seed[1].RiderID = riderSeed.Seed[1].ID
 
-	/* DB.Create(cardSeed.Seed) */
+	DB.Create(cardSeed.Seed)
 
 }
