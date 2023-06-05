@@ -4,6 +4,7 @@ import (
 	"github.com/Daizaikun/drive-back/app/config/routers"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	/* "github.com/gofiber/swagger" */)
 
 func Run() *fiber.App {
@@ -18,9 +19,9 @@ func Run() *fiber.App {
 
 	// app.Use(recover.New())
 
-	/* app.Use(logger.New(logger.Config{
+	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
-	})) */
+	}))
 
 	// swagger docs
 	/* app.Get("/swagger/*", swagger.HandlerDefault) */

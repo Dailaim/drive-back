@@ -9,11 +9,8 @@ import (
 	"gorm.io/gorm"
 	/* 	"gorm.io/gorm/logger" */)
 
-var db *gorm.DB
-
-func New() *gorm.DB {
-	return db
-}
+	
+var Ctx *gorm.DB
 
 func Connect() {
 
@@ -30,5 +27,7 @@ func Connect() {
 	}
 
 	seeds.Run(db)
+
+	Ctx = db
 
 }

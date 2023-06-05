@@ -11,13 +11,9 @@ import (
 
 func Run(DB *gorm.DB) {
 
-
 	DB.Create(driverSeed.Seed)
 
 	DB.Create(riderSeed.Seed)
-
-
-	
 	
 	cardSeed.Seed[0].RiderID = riderSeed.Seed[0].ID
 	cardSeed.Seed[1].RiderID = riderSeed.Seed[1].ID

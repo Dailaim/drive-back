@@ -9,11 +9,9 @@ import (
 
 func CreateRide(c *fiber.Ctx) error {
 
-	DB := db.New()
+	RideDto := rideDto.CreateRide{}
 
-	RideDto := new(rideDto.CreateRide)
-
-	err := c.BodyParser(RideDto)
+	err := c.BodyParser(&RideDto)
 	if err != nil {
 		return c.Status(400).JSON(rideDto.ErrorResponse{
 			Error: rideDto.Message{
@@ -23,12 +21,20 @@ func CreateRide(c *fiber.Ctx) error {
 		)
 	}
 
-	RideDB := rideModel.Model{
-		DriverID: RideDto.DriverID,
-		RiderID:  RideDto.RiderID,
-	}
+	var RideDB rideModel.Model
 
-	DB.Create(&RideDB)
+	RideDB.DriverID = RideDto.DriverID
+	RideDB.RiderID = RideDto.RiderID
+
+	result := db.Ctx.Create(&RideDB)
+	if result.Error != nil {
+		return c.Status(400).JSON(rideDto.ErrorResponse{
+			Error: rideDto.Message{
+				Message: "Invalid request",
+			},
+		},
+		)
+	}
 
 	return c.JSON(rideDto.CreateRideResponse{
 		ID: RideDB.ID,
