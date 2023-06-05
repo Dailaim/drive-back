@@ -10,6 +10,6 @@ func List(app *fiber.App) {
 
 	app.Mount("/", wompiEvent.Controller())
 
-	app.Mount("ride" , ride.Controller())
+	app.Mount("/" , ride.Controller())
 	
 }

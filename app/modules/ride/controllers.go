@@ -8,7 +8,7 @@ import (
 func Controller() *fiber.App {
 	app := fiber.New()
 
-	app.Post("/", rideServices.CreateRide)
+	app.Post("/ride", rideServices.CreateRide)
 
 	return app
 }
