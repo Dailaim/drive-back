@@ -39,6 +39,7 @@ func CreateRide(c *fiber.Ctx) error {
 	RideDB.DriverID = RideDto.DriverID
 	RideDB.RiderID = RideDto.RiderID
 	RideDB.TransactionID = transaction.ID
+	RideDB.Status = "created"
 
 	result = db.Ctx.Create(&RideDB)
 	if result.Error != nil {
