@@ -1,17 +1,35 @@
-# drive-back
+# Driver-back
 
-Para etiquetar la imagen que se construye con un Dockerfile, no se especifica el nombre de la imagen en el Dockerfile mismo. En su lugar, se proporciona como un argumento al comando `docker build` que se utiliza para construir la imagen. Aquí tienes un ejemplo de cómo podrías hacerlo:
+## Local Project Setup
 
-```bash
-docker build -t my-image-name:tag .
-```
+The program assumes that you already have a Postgres database and Go installed.
 
-En este comando, `my-image-name` es el nombre que quieres darle a tu imagen y `tag` es la etiqueta que quieres usar. El punto al final del comando indica a Docker que debe buscar el Dockerfile en el directorio actual.
+To run the project in development mode, we must follow these steps:
 
-Por lo tanto, si quisieras construir tu imagen y llamarla `my-wompi-app` con la etiqueta `v1.0`, usarías el siguiente comando:
+1. Clone the repository
+2. Download dependencies: `go mod tidy`
+3. Configure environment variables according to the .env.example
+4. Run the program: `go run main.go`
+5. The program will be running on port 8080
+6. View swagger documentation on http://localhost:8080/swagger/index.html
 
-```bash
-docker build -t my-wompi-app:v1.0 .
-```
+## Run unit tests in vscode
 
-Este comando construirá la imagen utilizando el Dockerfile en el directorio actual, y luego etiquetará la imagen resultante con el nombre `my-wompi-app` y la etiqueta `v1.0`.
+To run the unit tests, we need to make use of Go's testing library. Make sure you have the necessary testing files in your project. They usually have the format `*_test.go`. Once you've confirmed this, you can run your tests within vscode by right-clicking on the test file and selecting "Run Test".
+
+
+## Deploy on Heroku
+
+For deployment on Heroku, you need to have the Heroku CLI installed and logged into your Heroku account. If you've not set up your Heroku CLI, you can follow [this guide](https://devcenter.heroku.com/articles/heroku-cli).
+
+Then, follow the steps below:
+
+1. Create a new Heroku app: `heroku create`
+2. Add all your changes: `git add .`
+3. Commit your changes: `git commit -m "Initial commit"`
+4. Push the project to Heroku: `git push heroku master`
+5. Configure environment variables according to the .env.example, using the heroku dashboard or the heroku cli:
+
+ `heroku config:set MODE=dev SERVER_PORT=8080 DB_HOST=postgres DB_USER=root DB_PASSWORD=12323 DB_PORT=3000 WOMPI_PUBLIC_KEY= WOMPI_PRIVATE_KEY= WOMPI_INTEGRITY_KEY=`
+
+

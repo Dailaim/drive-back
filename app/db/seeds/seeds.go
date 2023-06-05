@@ -1,7 +1,7 @@
 package seeds
 
 import (
-/* 	"github.com/Daizaikun/drive-back/app/lib" */
+	"github.com/Daizaikun/drive-back/app/lib"
 	cardSeed "github.com/Daizaikun/drive-back/app/modules/card/seed"
 	driverSeed "github.com/Daizaikun/drive-back/app/modules/driver/seed"
 	riderSeed "github.com/Daizaikun/drive-back/app/modules/rider/seed"
@@ -11,13 +11,28 @@ import (
 
 func Run(DB *gorm.DB) {
 
-	DB.Create(driverSeed.Seed)
+	if lib.IsProduction() {
+		return
+	}
 
-	DB.Create(riderSeed.Seed)
-	
-	cardSeed.Seed[0].RiderID = riderSeed.Seed[0].ID
-	cardSeed.Seed[1].RiderID = riderSeed.Seed[1].ID
+	result := DB.Create(driverSeed.Seed)
+	if result.Error != nil {
+		panic("Error creating cards")
+	}
 
-	DB.Create(cardSeed.Seed)
+	result = DB.Create(riderSeed.Seed)
+	if result.Error != nil {
+		panic("Error creating cards")
+	}
+
+	RidersID := []uint{riderSeed.Seed[0].ID, riderSeed.Seed[1].ID}
+
+	cards := cardSeed.GenerateSeed(RidersID)
+
+	result = DB.Create(&cards)
+
+	if result.Error != nil {
+		panic("Error creating cards")
+	}
 
 }

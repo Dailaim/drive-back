@@ -5,7 +5,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	/* "github.com/gofiber/swagger" */)
+	"github.com/gofiber/swagger"
+
+	_ "github.com/Daizaikun/drive-back/docs"
+)
 
 func Run() *fiber.App {
 
@@ -24,9 +27,7 @@ func Run() *fiber.App {
 	}))
 
 	// swagger docs
-	/* app.Get("/swagger/*", swagger.HandlerDefault) */
-
-	// Crear routs de la aplicación
+	app.Get("/swagger/*", swagger.HandlerDefault)
 
 	routers.List(app)
 

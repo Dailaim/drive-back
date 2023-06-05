@@ -6,9 +6,12 @@ import (
 )
 
 func Controller() *fiber.App {
+	
 	app := fiber.New()
 
 	app.Post("/ride", rideServices.CreateRide)
+
+	app.Put("/ride/:id", rideServices.UpdateRide)
 
 	return app
 }

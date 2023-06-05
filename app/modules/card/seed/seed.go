@@ -11,12 +11,10 @@ import (
 	cardModel "github.com/Daizaikun/drive-back/app/modules/card/model"
 )
 
-var Seed = generateSeed()
-
 type responseData struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
-	User uint
+	User uint   `json:"user"`
 }
 
 type response struct {
@@ -28,7 +26,7 @@ func sendPostRequest(jsonStr []byte) responseData {
 
 	url := "https://sandbox.wompi.co/v1/tokens/cards"
 
-	bearer := (&lib.WompiKey{}).Public
+	bearer := lib.SetWompiKey().Public
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	if err != nil {
@@ -51,12 +49,15 @@ func sendPostRequest(jsonStr []byte) responseData {
 	}
 
 	var responseObj response
-	json.Unmarshal(body, &responseObj)
+	err = json.Unmarshal(body, &responseObj)
+	if err != nil {
+		panic("error creating seed card")
+	}
 
 	return responseObj.Data
 }
 
-func generateSeed() []*cardModel.Model {
+func GenerateSeed(ids []uint) []*cardModel.Model {
 	jsonStr1 := []byte(`{
 		"number": "4111111111111111",
 		"exp_month": "06",
@@ -80,10 +81,12 @@ func generateSeed() []*cardModel.Model {
 		{
 			Token:   seed1.ID,
 			Name:    seed1.Name,
+			RiderID: ids[0],
 		},
 		{
 			Token:   seed2.ID,
 			Name:    seed2.Name,
+			RiderID: ids[1],
 		},
 	}
 	return Seed

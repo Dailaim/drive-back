@@ -8,6 +8,15 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// @Summary Create Ride
+// @Description Create Ride with DriverID and RiderID
+// @Tags Ride
+// @Accept json
+// @Produce json
+// @Param object body rideDto.CreateRide true "Create Ride"
+// @Success 200 {object} rideDto.CreateRideResponse
+// @Failure 400 {object} rideDto.ErrorResponse
+// @Router /ride [post]
 func CreateRide(c *fiber.Ctx) error {
 
 	RideDto := rideDto.CreateRide{}
@@ -52,6 +61,7 @@ func CreateRide(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(rideDto.CreateRideResponse{
-		ID: RideDB.ID,
+		ID:     RideDB.ID,
+		Status: RideDB.Status,
 	})
 }

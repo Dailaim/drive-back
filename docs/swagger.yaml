@@ -1,0 +1,314 @@
+basePath: /
+definitions:
+  rideDto.Card:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      token:
+        type: string
+    type: object
+  rideDto.CreateRide:
+    properties:
+      driver_id:
+        type: integer
+      rider_id:
+        type: integer
+    type: object
+  rideDto.CreateRideResponse:
+    properties:
+      id:
+        type: integer
+      status:
+        type: string
+    type: object
+  rideDto.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/rideDto.Message'
+    type: object
+  rideDto.Message:
+    properties:
+      message:
+        type: string
+    type: object
+  rideDto.Rider:
+    properties:
+      cards:
+        items:
+          $ref: '#/definitions/rideDto.Card'
+        type: array
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+    type: object
+  rideDto.Transaction:
+    properties:
+      fare:
+        type: integer
+      id:
+        type: integer
+      status:
+        type: string
+      status_message:
+        type: string
+    type: object
+  rideDto.UpdateRide:
+    properties:
+      endLocation:
+        type: string
+      endTime:
+        type: string
+      id:
+        type: integer
+      startLocation:
+        type: string
+      startTime:
+        type: string
+      status:
+        type: string
+    type: object
+  rideDto.UpdateRideResponse:
+    properties:
+      id:
+        type: integer
+      message:
+        type: string
+      rider:
+        $ref: '#/definitions/rideDto.Rider'
+      status:
+        type: string
+      transaction:
+        $ref: '#/definitions/rideDto.Transaction'
+      transaction_id:
+        type: integer
+    type: object
+  transactionDto.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/transactionDto.Message'
+    type: object
+  transactionDto.Message:
+    properties:
+      message:
+        type: string
+    type: object
+  transactionDto.TransactionResponse:
+    properties:
+      fare:
+        type: integer
+      id:
+        type: integer
+      message:
+        type: string
+      status:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  wompiEventDto.Data:
+    properties:
+      transaction:
+        $ref: '#/definitions/wompiEventDto.Transaction'
+    type: object
+  wompiEventDto.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/wompiEventDto.Message'
+    type: object
+  wompiEventDto.Event:
+    properties:
+      data:
+        $ref: '#/definitions/wompiEventDto.Data'
+      environment:
+        type: string
+      event:
+        type: string
+      sent_at:
+        type: string
+      signature:
+        $ref: '#/definitions/wompiEventDto.Signature'
+      timestamp:
+        type: integer
+    type: object
+  wompiEventDto.Message:
+    properties:
+      message:
+        type: string
+    type: object
+  wompiEventDto.Signature:
+    properties:
+      checksum:
+        type: string
+      properties:
+        items:
+          type: string
+        type: array
+    type: object
+  wompiEventDto.Transaction:
+    properties:
+      amount_in_cents:
+        type: integer
+      currency:
+        type: string
+      customer_email:
+        type: string
+      id:
+        type: string
+      payment_link_id:
+        type: string
+      payment_method_type:
+        type: string
+      payment_source_id:
+        type: string
+      redirect_url:
+        type: string
+      reference:
+        type: string
+      shipping_address:
+        type: string
+      status:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: laiglesias.min@gmail.com
+    name: Leonardo Iglesias
+  description: The driver-back API description for swagger documentation
+  title: Diver Back API
+  version: "1.0"
+paths:
+  /ride:
+    post:
+      consumes:
+      - application/json
+      description: Create Ride with DriverID and RiderID
+      parameters:
+      - description: Create Ride
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/rideDto.CreateRide'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rideDto.CreateRideResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rideDto.ErrorResponse'
+      summary: Create Ride
+      tags:
+      - Ride
+  /ride/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update Ride with ID
+      parameters:
+      - description: Update Ride
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/rideDto.UpdateRide'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rideDto.UpdateRideResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/rideDto.ErrorResponse'
+      summary: Update Ride
+      tags:
+      - Ride
+  /transaction/id/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Transaction by ID
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transactionDto.TransactionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/transactionDto.ErrorResponse'
+      summary: Get Transaction by ID
+      tags:
+      - Transaction
+  /transaction/wompi/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Wompi Transaction by ID
+      parameters:
+      - description: Wompi Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transactionDto.TransactionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/transactionDto.ErrorResponse'
+      summary: Get Wompi Transaction by ID
+      tags:
+      - Transaction
+  /wompievent:
+    post:
+      consumes:
+      - application/json
+      description: Wompi Event Hook
+      parameters:
+      - description: Wompi Event
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/wompiEventDto.Event'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/wompiEventDto.ErrorResponse'
+      summary: Wompi Event Hook
+      tags:
+      - WompiEvent
+swagger: "2.0"

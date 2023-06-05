@@ -10,6 +10,6 @@ import (
 func Controller() *fiber.App { 
 	app := fiber.New()
 
-	app.Post("/wompievent", services.WompiEvenHook)
+	app.Post("/wompievent", wompiServices.WompiEvenHook)
 	return app
 }

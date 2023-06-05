@@ -6,7 +6,8 @@ type WompiKey struct {
 	Integrity string
 }
 
-func (w *WompiKey) SetWompiKey() {
+func SetWompiKey() *WompiKey {
+	w := new(WompiKey)
 
 	w.Private = CheckEnv("WOMPI_PRIVATE_KEY", "")
 	w.Public = CheckEnv("WOMPI_PUBLIC_KEY", "")
@@ -15,5 +16,7 @@ func (w *WompiKey) SetWompiKey() {
 	if w.Private == "" || w.Public == "" {
 		panic("WOMPI_PRIVATE_KEY or WOMPI_PUBLIC_KEY not found")
 	}
+
+	return w
 
 }

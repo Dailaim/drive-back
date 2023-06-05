@@ -9,15 +9,16 @@ import (
 	"gorm.io/gorm"
 	/* 	"gorm.io/gorm/logger" */)
 
-	
 var Ctx *gorm.DB
 
-func Connect() {
+func Connect() *gorm.DB {
 
 	db, err := gorm.Open(postgres.Open(dns.New()), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
+
+	Ctx = db
 
 	/* DB.Logger = logger.Default.LogMode(logger.Info) */
 
@@ -26,8 +27,7 @@ func Connect() {
 		panic("failed to migrate database")
 	}
 
-	seeds.Run(db)
+	go seeds.Run(db)
 
-	Ctx = db
-
+	return db
 }
