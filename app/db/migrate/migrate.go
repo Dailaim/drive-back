@@ -1,22 +1,22 @@
 package migrate
 
 import (
-	"github.com/Daizaikun/drive-back/app/modules/card"
-	"github.com/Daizaikun/drive-back/app/modules/driver"
-	"github.com/Daizaikun/drive-back/app/modules/ride"
-	"github.com/Daizaikun/drive-back/app/modules/rider"
-	"github.com/Daizaikun/drive-back/app/modules/transaction"
+	cardModel "github.com/Daizaikun/drive-back/app/modules/card/model"
+	driverModel "github.com/Daizaikun/drive-back/app/modules/driver/model"
+	rideModel "github.com/Daizaikun/drive-back/app/modules/ride/model"
+	riderModel "github.com/Daizaikun/drive-back/app/modules/rider/model"
+	transactionModel "github.com/Daizaikun/drive-back/app/modules/transaction/model"
 	"gorm.io/gorm"
 )
 
 func New(DB *gorm.DB) error {
 
 	err := DB.AutoMigrate(
-		&transaction.Model{},
-		&driver.Model{},
-		&rider.Model{},
-		&ride.Model{},
-		&card.Model{},
+		&transactionModel.Model{},
+		&driverModel.Model{},
+		&riderModel.Model{},
+		&rideModel.Model{},
+		&cardModel.Model{},
 	)
 
 	return err

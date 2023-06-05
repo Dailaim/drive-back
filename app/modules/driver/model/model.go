@@ -1,7 +1,7 @@
-package driver
+package driverModel
 
 import (
-	"github.com/Daizaikun/drive-back/app/modules/ride"
+	ride "github.com/Daizaikun/drive-back/app/modules/ride/model"
 	"gorm.io/gorm"
 )
 

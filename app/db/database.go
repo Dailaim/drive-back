@@ -3,6 +3,7 @@ package db
 import (
 	"github.com/Daizaikun/drive-back/app/db/dns"
 	"github.com/Daizaikun/drive-back/app/db/migrate"
+
 	"github.com/Daizaikun/drive-back/app/db/seeds"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

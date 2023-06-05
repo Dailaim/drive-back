@@ -1,6 +1,8 @@
-package driver
+package driverSeed
 
-var Seed = []*Model{
+import "github.com/Daizaikun/drive-back/app/modules/driver/model"
+
+var Seed = []*driverModel.Model{
 	{
 		LastName:        "Doe",
 		FirstName:       "John",

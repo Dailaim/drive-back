@@ -2,9 +2,10 @@ package seeds
 
 import (
 	"github.com/Daizaikun/drive-back/app/lib"
-	"github.com/Daizaikun/drive-back/app/modules/card"
-	"github.com/Daizaikun/drive-back/app/modules/driver"
-	"github.com/Daizaikun/drive-back/app/modules/rider"
+	cardSeed "github.com/Daizaikun/drive-back/app/modules/card/seed"
+	driverSeed "github.com/Daizaikun/drive-back/app/modules/driver/seed"
+	riderSeed "github.com/Daizaikun/drive-back/app/modules/rider/seed"
+
 	"gorm.io/gorm"
 )
 
@@ -14,13 +15,12 @@ func Run(DB *gorm.DB) {
 		return
 	}
 
-	DB.Create(driver.Seed)
+	DB.Create(driverSeed.Seed)
 
-	DB.Create(rider.Seed)
-	card.Seed[0].RiderID = rider.Seed[0].ID
-	card.Seed[0].RiderID = rider.Seed[1].ID
+	DB.Create(riderSeed.Seed)
+	cardSeed.Seed[0].RiderID = riderSeed.Seed[0].ID
+	cardSeed.Seed[1].RiderID = riderSeed.Seed[1].ID
 
-
-	DB.Create(card.Seed)
+	DB.Create(cardSeed.Seed)
 
 }

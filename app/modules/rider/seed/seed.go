@@ -1,6 +1,8 @@
-package rider
+package riderSeed
 
-var Seed = []Model{
+import riderModel "github.com/Daizaikun/drive-back/app/modules/rider/model"
+
+var Seed = []*riderModel.Model{
 	{
 		Email:     "rider1@example.com",
 		LastName:  "Rider1",
@@ -8,7 +10,7 @@ var Seed = []Model{
 	},
 	{
 		Email:     "rider2@example.com",
-		LastName: "Rider2",
+		LastName:  "Rider2",
 		FirstName: "Rider2",
 	},
 }

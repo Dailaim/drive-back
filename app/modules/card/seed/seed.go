@@ -1,4 +1,4 @@
-package card
+package cardSeed
 
 import (
 	"bytes"
@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/Daizaikun/drive-back/app/lib"
+	cardModel "github.com/Daizaikun/drive-back/app/modules/card/model"
 )
 
 var Seed = generateSeed()
@@ -55,7 +56,7 @@ func sendPostRequest(jsonStr []byte) responseData {
 	return responseObj.Data
 }
 
-func generateSeed() []*Model {
+func generateSeed() []*cardModel.Model {
 	jsonStr1 := []byte(`{
 		"number": "4111111111111111",
 		"exp_month": "06",
@@ -75,7 +76,7 @@ func generateSeed() []*Model {
 	seed1 := sendPostRequest(jsonStr1)
 	seed2 := sendPostRequest(jsonStr2)
 
-	Seed := []*Model{
+	Seed := []*cardModel.Model{
 		{
 			Token:   seed1.ID,
 			Name:    seed1.Name,
